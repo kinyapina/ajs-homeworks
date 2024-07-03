@@ -1,0 +1,1 @@
+!function(){"use strict";(new Game).start(),console.log("worked"),console.log(function(o){let n=0;for(const o of[1,2])n+=o;return n}())}();
