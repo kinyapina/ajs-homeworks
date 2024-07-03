@@ -1,46 +1,14 @@
+const { merge } = require('webpack-merge');
 
-const path = require('node:path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const commonConfig = require('./webpack.common.config.js');
+const productionConfig = require('./webpack.production.config.js');
+const developmentConfig = require('./webpack.development.config.js');
 
-module.exports = {
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-          },
-        ],
-      },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-      }
-    ],
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-    })
-  ],
-};
+module.exports = (env) => {
+  if (env.development) {
+    return merge(commonConfig, developmentConfig);
+  }
+  else {
+    return merge(commonConfig, productionConfig);
+  }
+}
