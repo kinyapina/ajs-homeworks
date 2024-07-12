@@ -1,10 +1,7 @@
+import { user } from '../userHealth';
 import checkUserHealth from '../userHealth';
 
 test('userHealth: 90', () => {
-  const user = {
-    name: 'Маг',
-    health: 90,
-  }
-  const result = checkUserHealth(90);
+  const result = checkUserHealth(user.health);
   expect(result).toBe('healthy');
 });

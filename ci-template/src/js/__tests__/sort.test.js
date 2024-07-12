@@ -1,19 +1,11 @@
-const list = [
-  { name: 'мечник', health: 10 },
-  { name: 'маг', health: 100 },
-  { name: 'лучник', health: 80 },
-];
+import { list, sortedList } from '../sort'
+import toSortList from '../sort';
 
-const sortedList = [
-  { name: 'маг', health: 100 },
-  { name: 'лучник', health: 80 },
-  { name: 'мечник', health: 10 },
-]
-test('sort by range', () => {
-  const result = list.sort(function (a, b) {
-    return b.health - a.health;
-  });
-  expect(result).toEqual(sortedList);
+test('sort list form big to small', () => {
+  for (let i = 0; i <= list.length; i++) {
+    const result = list.sort(toSortList(list[i], list[i++]));
+    expect(result).toEqual(sortedList);
+  }
 });
 
 

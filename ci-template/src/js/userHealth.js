@@ -1,14 +1,18 @@
+export const user = {
+  name: 'Маг',
+  health: 90,
+}
 
-export default function checkUserHealth(health) {
-  if (health > 50) {
+export default function checkUserHealth(value) {
+  if (value > 50) {
     return 'healthy';
   }
-  if (50 > health > 15) {
+
+  if (value > 15) {
     return 'wounded';
   }
-  if (health <= 15) {
-    return 'critical';
-  }
+
+  return 'critical';
 }
 
 
