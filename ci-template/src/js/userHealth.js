@@ -4,19 +4,21 @@ export const user = {
 }
 
 export default function checkUserHealth(value) {
-  if (typeof value !== 'number' || value < 0) {
-    return 'this is not a number';
-  }
-
   if (value > 50) {
     return 'healthy';
   }
 
-  if (value > 15) {
+  if (value > 15 && value <= 50) {
     return 'wounded';
   }
 
-  return 'critical';
+  if (value <= 15 && value > 0) {
+    return 'critical';
+  }
+
+  if (typeof value !== "number") {
+    return 'value is not a number';
+  }
 }
 
 
