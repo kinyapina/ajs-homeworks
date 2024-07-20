@@ -23,7 +23,7 @@ class Character {
 
     Object.defineProperty(this, 'name', {
       set: function (name) {
-        if (!typeof (name) === string) {
+        if (typeof (name) !== string) {
           throw new Error('name is not a string');
         }
 
@@ -78,7 +78,7 @@ class Bowman extends Character {
 Bowman.attack = 25;
 Bowman.defence = 25;
 
-const hero = new Bowman('111', 'Bowman');
+const hero = new Bowman(111, 'Bowman');
 
-console.log(hero);
-
+console.log(typeof (hero.name));
+console.log(hero.type);
