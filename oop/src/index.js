@@ -1,5 +1,5 @@
 import './style.css';
-
+/* 
 import Character from './types/Character';
 import Bowman from './types/Bowman';
 import Daemon from './types/Daemon';
@@ -11,4 +11,4 @@ import Zombie from './types/Zombie';
 const playerZoro = new Bowman('Zoro', 'Bowman');
 playerZoro.levelUp();
 playerZoro.levelUp();
-console.log(playerZoro);
+console.log(playerZoro); */
