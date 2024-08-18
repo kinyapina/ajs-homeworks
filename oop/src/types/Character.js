@@ -1,22 +1,17 @@
 export default class Character {
   constructor(name, type) {
+    if (typeof name !== 'string' || name.length < 2 || name.length > 10) {
+      throw new Error('Количество букв в имени должно быть от 2 до 10 знаков');
+    }
+
     const types = ['Bowman', 'Swordsman', 'Magician', 'Daemon', 'Undead', 'Zombie'];
 
-    if (name.length < 2 || name.length > 10) {
-      throw new Error('Количество символов в имени должно быть от 2 до 10');
-    }
-
-    if (typeof (name) !== 'string') {
-      throw new Error('Имя должно содержать только буквы');
-    }
-
     if (!types.includes(type)) {
-      throw new Error('Значение необходимо выбрать из списка');
+      throw new Error(`Значение необходимо выбрать из списка: ${types.join(', ')}`);
     }
 
     this.name = name;
     this.type = type;
-
     this.health = 100;
     this.level = 1;
 

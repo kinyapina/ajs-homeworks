@@ -1,54 +1,44 @@
 import Character from '../types/character';
 
 test('Ошибка в name: количество символов', () => {
-  const hero = new Character('Z', 'Bowman');
-  expect(hero).toThrow(new Error('Количество символов в имени должно быть от 2 до 10'));
-});
-
-test('Ошибка в name: имя не должно содержать цифр', () => {
-  const hero = new Character(5, 'Bowman');
-  expect(hero).toThrow(new Error('Имя должно содержать только буквы'));
+  expect(() => new Character('A', 'Bowman')).toThrow('Количество букв в имени должно быть от 2 до 10 знаков');
+  expect(() => new Character('Ajjfjfjfjfjfjjfjfjf', 'Bowman')).toThrow('Количество букв в имени должно быть от 2 до 10 знаков');
+  expect(() => new Character(1, 'Bowman')).toThrow('Количество букв в имени должно быть от 2 до 10 знаков');
 });
 
 test('Ошибка в type: type не соответсвует значению из списка', () => {
-  const hero = new Character('Zorro', 'Bowmane');
-  expect(hero).toThrow(new Error('Значение необходимо выбрать из списка'));
+  expect(() => new Character('Anke', 'Fish')).toThrow('Значение необходимо выбрать из списка: Bowman, Swordsman, Magician, Daemon, Undead, Zombie');
 });
 
 test('Проверка повышения уровня', () => {
-  const hero = new Character('Zorro', 'Bowman');
-  const result = {
-    name: 'Zorro',
-    type: 'Bowman',
-    health: 100,
-    level: 2,
-    attack: undefined,
-    defence: undefined
-  }
-  expect(hero.levelUp()).toEqual(result);
+  const hero = new Character('Hero', 'Bowman');
+  hero.attack = 10;
+  hero.defence = 10;
+  hero.levelUp();
+  expect(hero.level).toBe(2);
+  expect(hero.attack).toBe(12);
+  expect(hero.defence).toBe(12);
 });
 
 test('Проверка повышения уровня умершего', () => {
-  const hero = new Character('Zorro', 'Bowman');
-  hero.health = 0;
-  expect(hero.levelUp()).toThrow(new Error('Нельзя повысить левел умершего'));
+  const hero = new Character('Hero', 'Bowman');
+  hero.attack = 10;
+  hero.defence = 40;
+  hero.health = -1;
+  expect(() => hero.levelUp()).toThrow('Нельзя повысить левел умершего');
 });
 
 test('Проверка понижения уровня', () => {
-  const hero = new Character('Zorro', 'Bowman');
-  const result = {
-    name: 'Zorro',
-    type: 'Bowman',
-    health: 100,
-    level: 1,
-    attack: undefined,
-    defence: undefined
-  }
-  expect(hero.damage(20)).toEqual(result);
+  const hero = new Character('Andrew', 'Swordsman');
+  hero.health = 100;
+  hero.defence = 40;
+  hero.damage(50);
+  expect(hero.health).toBe(70);
 });
 
 test('Проверка понижения уровня умершего', () => {
-  const hero = new Character('Zorro', 'Bowman');
+  const hero = new Character('Andrew', 'Swordsman');
   hero.health = -1;
-  expect(hero.damage(20)).toThrow(new Error('Уровень здоровья меньше нормы'));
+  hero.defence = 40;
+  expect(() => hero.damage(250)).toThrow('Уровень здоровья меньше нормы');
 });
