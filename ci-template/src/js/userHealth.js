@@ -1,4 +1,4 @@
-export const user = {
+/* export const user = {
   name: 'Маг',
   health: 90,
 }
@@ -22,3 +22,4 @@ export default function checkUserHealth(value) {
 }
 
 
+ */

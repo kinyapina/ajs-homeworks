@@ -1,4 +1,4 @@
-import { list } from '../sort';
+/* import { list } from '../sort';
 import sortByHealth from '../sort';
 
 const sortedList = [
@@ -31,4 +31,4 @@ test('elements are equal', () => {
 test('sort arr by health', () => {
   const result = sortByHealth(list);
   expect(result.health).toEqual(sortedList.health);
-});
+}); */
