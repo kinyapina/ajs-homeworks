@@ -1,4 +1,4 @@
-import { GameSavingLoader } from '../js/asyncLoader.js';
+import { GameSavingLoader } from './gameSavingLoader_promises.js';
 
 GameSavingLoader.load()
   .then((saving) => {

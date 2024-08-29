@@ -1,5 +1,5 @@
-import read from '../js/reader.js';
-import json from '../js/parser.js';
+import read from './reader.js';
+import json from './parser.js';
 
 class GameSaving {
   constructor(id, created, userInfo) {
@@ -14,7 +14,7 @@ export default class GameSavingLoader {
     try {
       const data = await read();
       const value = await json(data);
-      const savingValue = JSON.parce(value);
+      const savingValue = JSON.parse(value);
 
       const savingData = new GameSavingLoader(
         savingValue.id,
